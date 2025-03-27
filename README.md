@@ -1,4 +1,5 @@
 [![PyPI version](https://badge.fury.io/py/vertex-FC.svg)](https://pypi.org/project/vertex-FC/)
+[![License](https://img.shields.io/pypi/l/vertex-FC)](https://pypi.org/project/vertex-FC/)
 
 # VERTEX: Accelerated fMRI Functional Connectivity Tools
 VERTEX is a a python for functional connectivity analysis at the voxel / vertex level that utilizes pytorch for GPU speed ups and scipy sparse matrices for memory savings.
