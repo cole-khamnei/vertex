@@ -11,7 +11,9 @@ VERTEX is a a python for functional connectivity analysis at the voxel / vertex 
 		[] PM: integrate with Sparse-Low Rank Clustering
 
 ## Installation
+
 Install from PyPI:
+
 ```pip install your-package-name```
 
 # Acceleration Effects:
