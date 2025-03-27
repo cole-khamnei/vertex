@@ -10,7 +10,7 @@ VALID_BACKENDS = {"numpy": np}
 import torch
 VALID_BACKENDS["torch"] = torch
 USE_CUDA = torch.cuda.is_available()
-USE_MPS = torch.mps.is_available()
+USE_MPS = torch.backends.mps.is_available()
 DEFAULT_DEVICE = "cuda" if USE_CUDA else "mps" if USE_MPS else "cpu"
 
 
