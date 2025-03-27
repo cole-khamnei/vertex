@@ -14,7 +14,7 @@ VERTEX is a a python for functional connectivity analysis at the voxel / vertex 
 
 Install from PyPI:
 
-```pip install your-package-name```
+```pip install vertex-FC```
 
 # Acceleration Effects:
 Comparisons are with `wb_command` package (~~version~~):
