@@ -1,0 +1,9 @@
+memory_profiler==0.61.0
+mlx==0.22.0
+nibabel==5.3.2
+numpy==2.2.4
+psutil==6.1.0
+py_cpuinfo==9.0.0
+scipy==1.15.2
+torch==2.6.0
+tqdm==4.66.6
