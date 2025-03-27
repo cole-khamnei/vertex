@@ -1,4 +1,4 @@
-# VERTEX: Accelerated fMRI Data Function Connectivity Tools
+# VERTEX: Accelerated fMRI Functional Connectivity Tools
 VERTEX is a a python for functional connectivity analysis at the voxel / vertex level that utilizes pytorch for GPU speed ups and scipy sparse matrices for memory savings.
 
 # Tools:
