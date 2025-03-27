@@ -191,7 +191,10 @@ class ThresholdAggregator(block_analysis.BlockAnalysis):
         return scipy.sparse.csr_matrix((tv, (ri.astype(int), ci.astype(int))), shape=self.shape)
 
 
-# \section pair aggregator
+# ----------------------------------------------------------------------------# 
+# --------------------          Pair Aggregator           --------------------# 
+# ----------------------------------------------------------------------------# 
+
 
 class PairComparator(block_analysis.BlockAnalysis):
     """

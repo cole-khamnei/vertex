@@ -22,6 +22,7 @@ import platform, socket, re, uuid, json, psutil, logging
 
 import cpuinfo
 
+
 def get_cpu_info():
     """ """
 
@@ -29,6 +30,7 @@ def get_cpu_info():
     cores = cpuinfo.get_cpu_info()["count"]
 
     return f"{name} {cores}-core"
+
 
 def getSystemInfo():
     """ """
@@ -71,7 +73,6 @@ def resource_monitor(task_func):
     elapse_time = time.time() - start_time
 
     return elapse_time, mem_usage
-
 
 
 def benchmark_machine(n_trials=5):

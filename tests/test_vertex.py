@@ -9,6 +9,7 @@ sys.path.insert(0, file_dir_path + "/../")
 
 import vertex
 
+
 class TestVERTEXMain(unittest.TestCase):
 
     def test_args(self):

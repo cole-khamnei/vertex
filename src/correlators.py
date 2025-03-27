@@ -5,7 +5,9 @@ from . import utils
 import gc
 import torch
 
-#\section Correlator class
+# ----------------------------------------------------------------------------# 
+# --------------------          Correlator Class          --------------------# 
+# ----------------------------------------------------------------------------# 
 
 
 class Correlator:
@@ -33,7 +35,9 @@ class Correlator:
         return M_chunk
 
 
-#\section Runners
+# ----------------------------------------------------------------------------# 
+# --------------------              Runners               --------------------# 
+# ----------------------------------------------------------------------------# 
 
 
 class Runner(Correlator, block_analysis.BlockAnalysis):
@@ -82,7 +86,6 @@ class ThresholdCorrelator(Correlator, aggregators.ThresholdAggregator):
     def __init__(self, *args, **kwargs):
         Correlator.__init__(self, *args, **kwargs)
         aggregators.ThresholdAggregator.__init__(self, *args, **kwargs)
-
 
 
 class PairCorrelator(Correlator, aggregators.PairComparator):
