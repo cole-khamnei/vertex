@@ -33,7 +33,7 @@ Comparisons are with `wb_command` package (~~version~~):
 		[] create time benchmark plots for devices
 		[] benchmark script:
 			[] runs on machine: records time of set functions
-			[] outputs: pkl with memory over time, time to run each function
+			[] outputs: pkl with memory over time, time to run each function, device info
 			[] plots: 
 	[] main:
 		[] vFC sparsity
