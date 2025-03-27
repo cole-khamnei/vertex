@@ -28,9 +28,13 @@ Comparisons are with `wb_command` package (~~version~~):
 
 # TODO:
 	[] plots:
-		[] migrate SFM plotting script into this
+		[] migrate SFM plotting script into this -> dont want to have plots - less clean, just output ciftis
 	[] benchmarking
 		[] create time benchmark plots for devices
+		[] benchmark script:
+			[] runs on machine: records time of set functions
+			[] outputs: pkl with memory over time, time to run each function
+			[] plots: 
 	[] main:
 		[] vFC sparsity
 		[] vFC thresholded

@@ -16,8 +16,7 @@ class TestVERTEXMain(unittest.TestCase):
         save_path = f"{file_dir_path}/outputs/example_vFC.npz"
 
         arg_list = f"-c {cifti_path} -o {save_path}"
-
         vertex.main(arg_list.split())
-    
+
 if __name__ == "__main__":
     unittest.main()

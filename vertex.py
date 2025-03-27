@@ -65,7 +65,6 @@ def main(test_args: list = None):
                         exclude_index_path=None, mask_path=None,
                         block_size=5000, leave=True)
 
-        raise NotImplementedError
     elif args.mode == "compare":
         raise NotImplementedError
 
