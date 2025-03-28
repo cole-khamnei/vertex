@@ -66,8 +66,10 @@ def main(test_args: list = None):
                         block_size=5000, leave=True)
 
     elif args.mode == "compare":
+        FC.correlate_vertex_FC(args.cifti, args.cifti_2, args.save_path, threshold=None,
+                               exclude_index_path=None, mask_path=None, leave=True)
+    else:
         raise NotImplementedError
-
 
 if __name__ == '__main__':
     main()
