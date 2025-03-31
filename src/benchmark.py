@@ -60,7 +60,7 @@ def getSystemInfo():
 
 def sparse_correlation_task():
     """ """
-    cifti_path = f"{TESTS_DIR}/sample_data/example.dtseries.nii"
+    cifti_path = f"{TESTS_DIR}/sample_data/random.dtseries.nii"
     save_path = f"{TESTS_DIR}/outputs/example_vFC.npz"
     arg_list = f"-c {cifti_path} -o {save_path}"
     vertex.main(arg_list.split())
