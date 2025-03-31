@@ -37,15 +37,17 @@ def process_arguments(test_args: list = None):
 
     # General Arguments
     parser.add_argument('-s', "--seed", dest='seed', action="store", type=int, default=137,
-                        required=False, help="Random seed")
+                        help="Random seed")
     parser.add_argument("-m", '--mode', choices=MODES, type=str, default="sparse",
                         help=f'vertex options: {MODES}')
 
     parser.add_argument('-c', "--cifti", dest='cifti', action="store", type=str, required=True, help="path to cifti")
     parser.add_argument('-c2', "--cifti-2", dest='cifti_2', action="store", type=str,
                         required=False, help="path to cifti 2 for comparisons")
-    parser.add_argument('-o', "--out", dest='save_path', action="store", type=str, required=True, help="save path")
-    
+    parser.add_argument('-o', "--out", dest='save_path', action="store", type=str,
+                        required=True, help="save path")
+    parser.add_argument("-d", '--device', choices=utils.AVAILABLE_DEVICES, type=str,
+                        default="auto", help=f'Device options: {MODES}')
 
     args = parser.parse_args() if test_args is None else parser.parse_args(test_args)
     return check_arguments(args)
@@ -63,11 +65,12 @@ def main(test_args: list = None):
     if args.mode == "sparse":
         FC.calculate_vertex_FC(args.cifti, args.save_path, sparsity=0.1,
                         exclude_index_path=None, mask_path=None,
-                        block_size=5000, leave=True)
+                        block_size=5000, leave=True, device=args.device)
 
     elif args.mode == "compare":
         FC.correlate_vertex_FC(args.cifti, args.cifti_2, args.save_path, threshold=None,
-                               exclude_index_path=None, mask_path=None, leave=True)
+                               exclude_index_path=None, mask_path=None, leave=True,
+                               device=args.device)
     else:
         raise NotImplementedError
 

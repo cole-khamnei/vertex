@@ -21,6 +21,26 @@ except:
     pass
 
 
+# \section device tools
+
+
+AVAILABLE_DEVICES = ["cpu"]
+
+if torch.backends.mps.is_available():
+    AVAILABLE_DEVICES.append("mps")
+if torch.cuda.is_available():
+    AVAILABLE_DEVICES.append("cuda")
+
+def get_device(device):
+    """ """
+    device = device.lower()
+    if device == "auto":
+        return AVAILABLE_DEVICES[-1]
+
+    assert device in AVAILABLE_DEVICES, f"Specified device '{device}' is unavailable - options are {AVAILABLE_DEVICES}"
+    return device
+
+
 # ----------------------------------------------------------------------------# 
 # --------------------          Backend Helpers           --------------------# 
 # ----------------------------------------------------------------------------# 

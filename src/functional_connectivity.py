@@ -2,7 +2,10 @@ import nibabel as nb
 import numpy as np
 import scipy
 
+import torch
+
 from . import correlators as corr
+from . import utils
 
 # ----------------------------------------------------------------------------# 
 # --------               Functional Connectivity Tools                --------# 
@@ -11,8 +14,10 @@ from . import correlators as corr
 
 def calculate_vertex_FC(cifti_path, save_path=None, sparsity=0.1,
                         exclude_index_path=None, mask_path=None,
-                        block_size=5000, leave=True, **SC_kwargs):
+                        block_size=5000, leave=True, device="auto", **SC_kwargs):
     """ """
+    device = utils.get_device(device)
+    print(device)
     exclude_index = np.load(exclude_index_path) if exclude_index_path else None 
     mask = scipy.sparse.load_npz(mask_path) if mask_path else None
 
@@ -23,6 +28,7 @@ def calculate_vertex_FC(cifti_path, save_path=None, sparsity=0.1,
     sc = corr.SparseCorrelator.run(vertex_data, sparsity_percent=sparsity,
                                    mask=mask, exclude_index=exclude_index,
                                    symmetric=True, block_size=block_size, leave=leave,
+                                   device=device,
                                    **SC_kwargs)
     if save_path:
         scipy.sparse.save_npz(save_path, sc)
@@ -33,8 +39,10 @@ def calculate_vertex_FC(cifti_path, save_path=None, sparsity=0.1,
 
 def correlate_vertex_FC(cifti_path, cifti_2_path, save_path=None, threshold=None,
                         exclude_index_path=None, mask_path=None,
-                        block_size=1_000, leave=True, **SC_kwargs):
+                        block_size=1_000, leave=True, device="auto", **SC_kwargs):
     """ """
+    device = utils.get_device(device)
+
     exclude_index = np.load(exclude_index_path) if exclude_index_path else None 
     mask = scipy.sparse.load_npz(mask_path) if mask_path else None
 
@@ -50,7 +58,7 @@ def correlate_vertex_FC(cifti_path, cifti_2_path, save_path=None, threshold=None
     r_axis = corr.pair_correlation(pair_data, axis=0, threshold=threshold,
                               mask=None, exclude_index=None, leave=True,
                               block_size=5000, symmetric=False,
-                              backend="torch", device="mps", **SC_kwargs)
+                              backend="torch", device=device, **SC_kwargs)
     
     # TODO save r_axis as dscalar
     if save_path:
