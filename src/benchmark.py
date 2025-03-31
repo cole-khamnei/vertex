@@ -102,7 +102,7 @@ def benchmark_machine(n_trials=5):
         task_stats["elapsed_times"] = [t[0] for t in task_recordings]
         task_stats["mem_usages"] = [t[1] for t in task_recordings]
 
-        system_benchmarks["sparse_correlation"] = task_stats
+        system_benchmarks[task_name] = task_stats
         pbar.update(1)
 
     system_name = system_benchmarks["system_info"].lower()
