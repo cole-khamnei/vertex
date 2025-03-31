@@ -1,6 +1,7 @@
 import os
 import sys
 
+import subprocess
 import psutil
 import time
 
@@ -74,6 +75,31 @@ def pair_correlation_task():
     vertex.main(arg_list.split())
 
 
+# def wb_dconn():
+#     cifti_path = f"{TESTS_DIR}/sample_data/random.dtseries.nii"
+#     dconn_path = f"{TESTS_DIR}/outputs/random.dconn.nii"
+#     dconn_path = f"~/_tmp/random.dconn.nii"
+#     cmd = ["wb_command", "-cifti-correlation", cifti_path, output_dconn]
+#     subprocess.run(cmd, check=True)
+
+
+def wb_dconn_task():
+    cifti_path = f"{TESTS_DIR}/sample_data/random.dtseries.nii"
+    dconn_path = f"{TESTS_DIR}/outputs/random.dconn.nii"
+    dconn_path = f"/Users/cole/_tmp/random.dconn.nii"
+    cmd = ["wb_command", "-cifti-correlation", cifti_path,
+           dconn_path, "-mem-limit", "8"]
+    subprocess.run(cmd, check=True)
+
+
+def wb_pair_correlation_task():
+    output_path = f"{TESTS_DIR}/outputs/wb_pair_corr.dscalar.nii"
+    dconn_path = f"/Users/cole/_tmp/random.dconn.nii"
+    cmd = ["wb_command", "-cifti-pairwise-correlation", dconn_path, dconn_path,
+           output_path]
+    subprocess.run(cmd, check=True)
+
+
 def resource_monitor(task_func):
     """ """
     start_time = time.time()
@@ -89,12 +115,13 @@ def benchmark_machine(n_trials=5):
     system_benchmarks = {}
     system_benchmarks["system_info"] = get_cpu_info().replace(" ", "_")
 
-    tasks = [pair_correlation_task, sparse_correlation_task]
+    # tasks = [wb_dconn_task, pair_correlation_task, sparse_correlation_task]
+    tasks = [wb_pair_correlation_task]
 
     pbar = tqdm(tasks, desc="Running Tasks")
     pbar.update(0)
     for task in tasks:
-        task_name = sparse_correlation_task.__name__.replace("_task", "")
+        task_name = task.__name__.replace("_task", "")
         pbar.set_description(f"Running Tasks - {task_name}")
         task_stats = {"task": task_name}
 
@@ -110,6 +137,7 @@ def benchmark_machine(n_trials=5):
     
     with open(benchmark_file, "w") as file:
         json.dump(system_benchmarks, file)
+
 
 # ----------------------------------------------------------------------------# 
 # --------------------                Main                --------------------# 
