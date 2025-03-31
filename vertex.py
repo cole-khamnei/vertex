@@ -46,8 +46,8 @@ def process_arguments(test_args: list = None):
                         required=False, help="path to cifti 2 for comparisons")
     parser.add_argument('-o', "--out", dest='save_path', action="store", type=str,
                         required=True, help="save path")
-    parser.add_argument("-d", '--device', choices=utils.AVAILABLE_DEVICES, type=str,
-                        default="auto", help=f'Device options: {MODES}')
+    parser.add_argument("-d", '--device', choices=utils.AVAILABLE_DEVICES + ["auto"], type=str,
+                        default="auto", help=f'Device options: {utils.AVAILABLE_DEVICES}')
 
     args = parser.parse_args() if test_args is None else parser.parse_args(test_args)
     return check_arguments(args)

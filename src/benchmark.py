@@ -66,6 +66,14 @@ def sparse_correlation_task():
     vertex.main(arg_list.split())
 
 
+def pair_correlation_task():
+    """ """
+    cifti_path = f"{TESTS_DIR}/sample_data/random.dtseries.nii"
+    save_path = f"{TESTS_DIR}/outputs/example_vFC.npz"
+    arg_list = f"-m compare -c {cifti_path} -c2 {cifti_path} -o {save_path} -d auto"
+    vertex.main(arg_list.split())
+
+
 def resource_monitor(task_func):
     """ """
     start_time = time.time()
@@ -81,7 +89,7 @@ def benchmark_machine(n_trials=5):
     system_benchmarks = {}
     system_benchmarks["system_info"] = get_cpu_info().replace(" ", "_")
 
-    tasks = [sparse_correlation_task]
+    tasks = [pair_correlation_task, sparse_correlation_task]
 
     pbar = tqdm(tasks, desc="Running Tasks")
     pbar.update(0)

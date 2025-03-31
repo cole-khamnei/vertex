@@ -49,10 +49,10 @@ def correlate_vertex_FC(cifti_path, cifti_2_path, save_path=None, threshold=None
 
     cifti = nb.load(cifti_path)
     # TODO: REMOVE CROP
-    vertex_data = cifti.get_fdata(caching="unchanged")[:, :30_000]
+    vertex_data = cifti.get_fdata(caching="unchanged")[:, :]
 
     cifti_2 = nb.load(cifti_2_path)
-    vertex_data_2 = cifti_2.get_fdata(caching="unchanged")[:, :30_000]
+    vertex_data_2 = cifti_2.get_fdata(caching="unchanged")[:, :]
 
     pair_data = np.stack((vertex_data, vertex_data_2), axis=2)
     r_axis = corr.pair_correlation(pair_data, axis=0, threshold=threshold,
