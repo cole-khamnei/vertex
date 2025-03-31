@@ -115,8 +115,8 @@ def benchmark_machine(n_trials=5):
     system_benchmarks = {}
     system_benchmarks["system_info"] = get_cpu_info().replace(" ", "_")
 
-    # tasks = [wb_dconn_task, pair_correlation_task, sparse_correlation_task]
-    tasks = [wb_pair_correlation_task]
+    tasks = [pair_correlation_task, sparse_correlation_task]
+    # tasks = [wb_pair_correlation_task]
 
     pbar = tqdm(tasks, desc="Running Tasks")
     pbar.update(0)
